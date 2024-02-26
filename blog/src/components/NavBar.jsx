@@ -49,7 +49,7 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="static" sx={{ marginBottom: "1rem" }}>
+    <AppBar position="static"  >
       <StyledToolbar>
         <Typography variant="h5" sx={{ display: { xs: "none", sm: "block" } }}>
           Senior.Az
