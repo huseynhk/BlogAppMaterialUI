@@ -143,8 +143,8 @@ const RightBar = () => {
               }
             />
           </ListItem>
-          <Divider variant="inset" component="li" />
-          <ListItem alignItems="flex-start">
+          {/* <Divider variant="inset" component="li" /> */}
+          {/* <ListItem alignItems="flex-start">
             <ListItemAvatar>
               <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
             </ListItemAvatar>
@@ -164,7 +164,7 @@ const RightBar = () => {
                 </React.Fragment>
               }
             />
-          </ListItem>
+          </ListItem> */}
         </List>
       </Box>
     </Box>

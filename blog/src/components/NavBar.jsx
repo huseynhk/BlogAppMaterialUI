@@ -49,10 +49,10 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="static"  >
+    <AppBar position="sticky">
       <StyledToolbar>
         <Typography variant="h5" sx={{ display: { xs: "none", sm: "block" } }}>
-          Senior.Az
+          sarkhanrahimlidev_Blog
         </Typography>
         <Pets sx={{ display: { xs: "block", sm: "none" } }} />
         <Search>
@@ -68,7 +68,7 @@ const NavBar = () => {
           </Badge>
 
           <Avatar
-            sx={{ width: 30, height: 30 , cursor: 'pointer'}}
+            sx={{ width: 30, height: 30, cursor: "pointer" }}
             onClick={handleClick}
             src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           />
@@ -76,7 +76,7 @@ const NavBar = () => {
 
         <UserBox>
           <Avatar
-            sx={{ width: 30, height: 30 , cursor: 'pointer'}}
+            sx={{ width: 30, height: 30, cursor: "pointer" }}
             onClick={handleClick}
             src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           />

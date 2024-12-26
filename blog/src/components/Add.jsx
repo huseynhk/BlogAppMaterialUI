@@ -31,8 +31,13 @@ const UserBox = styled(Box)({
   display: "flex",
   alignItems: "center",
   gap: "10px",
-  marginBottom: "20px",
+  marginBottom: "24px",
 });
+
+const CustomFab = styled(Fab)(() => ({
+  width: 75,
+  height: 75,
+}));
 
 const Add = () => {
   const [open, setOpen] = useState(false);
@@ -40,16 +45,21 @@ const Add = () => {
     <>
       <Tooltip
         onClick={() => setOpen(true)}
-        title="Delete"
+        title="Add"
         sx={{
           position: "fixed",
           bottom: 20,
           left: { xs: "calc(50% - 25px)", md: 30 },
         }}
       >
-        <Fab color="primary" aria-label="add">
-          <AddIcon />
-        </Fab>
+        <CustomFab color="primary" aria-label="add">
+          <AddIcon
+            sx={{
+              width: 45,
+              height: 45,
+            }}
+          />
+        </CustomFab>
       </Tooltip>
       <SytledModal
         open={open}
@@ -59,7 +69,7 @@ const Add = () => {
       >
         <Box
           width={400}
-          height={280}
+          height={275}
           bgcolor={"background.default"}
           color={"text.primary"}
           p={3}
