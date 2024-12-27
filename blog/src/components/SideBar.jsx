@@ -26,7 +26,7 @@ const SideBar = ({ mode, setMode }) => {
     setMode: PropTypes.func.isRequired,
   };
   return (
-    <Box flex={1} p={2} sx={{ display: { xs: "none", sm: "block" } }}>
+    <Box flex={1} p={2}  sx={{ display: { xs: "none", sm: "block" } }}>
       <Box position="fixed">
         <List>
           <ListItem disablePadding>
@@ -38,7 +38,7 @@ const SideBar = ({ mode, setMode }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
+            <ListItemButton component="a">
               <ListItemIcon>
                 <Article />
               </ListItemIcon>
@@ -46,7 +46,7 @@ const SideBar = ({ mode, setMode }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
+            <ListItemButton component="a" >
               <ListItemIcon>
                 <Group />
               </ListItemIcon>
@@ -54,7 +54,7 @@ const SideBar = ({ mode, setMode }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
+            <ListItemButton component="a">
               <ListItemIcon>
                 <Storefront />
               </ListItemIcon>
@@ -62,7 +62,7 @@ const SideBar = ({ mode, setMode }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
+            <ListItemButton component="a" >
               <ListItemIcon>
                 <Person />
               </ListItemIcon>
@@ -70,7 +70,7 @@ const SideBar = ({ mode, setMode }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
+            <ListItemButton component="a" >
               <ListItemIcon>
                 <Settings />
               </ListItemIcon>
@@ -78,7 +78,7 @@ const SideBar = ({ mode, setMode }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
+            <ListItemButton component="a" >
               <ListItemIcon>
                 <AccountBox />
               </ListItemIcon>
@@ -86,7 +86,7 @@ const SideBar = ({ mode, setMode }) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton component="a" href="#simple-list">
+            <ListItemButton component="a">
               <ListItemIcon>
                 {mode === "light" ? <LightModeIcon /> : <ModeNight />}
               </ListItemIcon>

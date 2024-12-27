@@ -16,7 +16,7 @@ import NavBar from "./NavBar";
 
 const ParentDiv = styled("div")(({ theme }) => ({
   width: "55%",
-  height: "100%",
+  minHeight: "100vh",
   borderRadius: theme.shape.borderRadius,
   display: "flex",
   flexDirection: "column",
@@ -25,6 +25,7 @@ const ParentDiv = styled("div")(({ theme }) => ({
     width: "100%",
   },
 }));
+
 const Home = () => {
   const [mode, setMode] = useState("light");
   const [items, setItems] = useState([]);
@@ -56,10 +57,14 @@ const Home = () => {
 
   return (
     <>
-      <NavBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} items={items} />
+      <NavBar
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        items={items}
+      />
 
-      <ThemeProvider theme={darkTheme}>
-        <Box bgcolor={"background.default"} color={"text.primary"}>
+      <ThemeProvider theme={darkTheme} >
+        <Box bgcolor={"background.default"} color={"text.primary"} >
           <Stack
             direction={{ xs: "column", sm: "row" }}
             spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -70,11 +75,15 @@ const Home = () => {
             <ParentDiv>
               {loading ? (
                 <Stack spacing={3} sx={{ margin: 5 }}>
-                  <Skeleton variant="rectangular" height={400} sx={{ borderRadius:"8px" }}/>
+                  <Skeleton
+                    variant="rectangular"
+                    height={450}
+                    sx={{ borderRadius: "8px" }}
+                  />
                 </Stack>
               ) : (
                 <>
-                  <Main items={filteredItems} fetchItems={fetchItems} />
+                  <Main items={filteredItems} fetchItems={fetchItems} mode={mode} />
                 </>
               )}
             </ParentDiv>

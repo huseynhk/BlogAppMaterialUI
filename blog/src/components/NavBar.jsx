@@ -17,13 +17,14 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   color: theme.palette.mainColor.main,
+  padding:"10px 15px"
 }));
 
 const Search = styled("div")(({ theme }) => ({
   backgroundColor: "white",
-  padding: "0 10px",
+  padding: "4px 10px",
   borderRadius: theme.shape.borderRadius,
-  width: "40%",
+  width: "35%",
 }));
 const Icons = styled(Box)(({ theme }) => ({
   display: "none",
@@ -54,28 +55,28 @@ const NavBar = ({ searchQuery, setSearchQuery, items }) => {
   return (
     <AppBar position="sticky">
       <StyledToolbar>
-        <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}>
+        <Typography variant="h5" sx={{ display: { xs: "none", sm: "block", color:"#b3eefe" } }}>
           sarkhanrahimlidev
         </Typography>
         <Pets sx={{ display: { xs: "block", sm: "none" } }} />
         <Search>
           <InputBase
-            placeholder="Search..."
+            placeholder="Search by name..."
             value={searchQuery}
             onChange={(e) => handleSearchChange(e)}
           />
         </Search>
         <Icons>
-          <Badge badgeContent={items.length} color="error">
-            <Mail />
+          <Badge badgeContent={items?.length} color="error">
+            <Mail sx={{fontSize:36}} />
           </Badge>
 
-          <Badge badgeContent={2} color="error">
-            <Notifications />
+          <Badge badgeContent={7} color="error">
+            <Notifications sx={{fontSize:36}} />
           </Badge>
 
           <Avatar
-            sx={{ width: 30, height: 30, cursor: "pointer" }}
+            sx={{ width: 50, height: 50, cursor: "pointer" }}
             onClick={handleClick}
             src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           />
@@ -83,7 +84,7 @@ const NavBar = ({ searchQuery, setSearchQuery, items }) => {
 
         <UserBox>
           <Avatar
-            sx={{ width: 30, height: 30, cursor: "pointer" }}
+            sx={{ width: 50, height: 50, cursor: "pointer" }}
             onClick={handleClick}
             src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           />

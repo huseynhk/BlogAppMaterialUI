@@ -15,9 +15,9 @@ import React from "react";
 
 const RightBar = () => {
   return (
-    <Box flex={2} p={2} sx={{ display: { xs: "none", sm: "block" } }}>
+    <Box flex={2} p={2}  sx={{ display: { xs: "none", sm: "block" } }}>
       <Box position="fixed" width={300}>
-        <Typography variant="h6" fontWeight={100}>
+        <Typography variant="h6" my={1}  fontWeight={100}>
           Online Friends
         </Typography>
         <AvatarGroup max={8}>
@@ -136,7 +136,7 @@ const RightBar = () => {
                     variant="body2"
                     color="text.primary"
                   >
-                    to Scott, Alex, Jennifer
+                    to Scott, Jennifer
                   </Typography>
                   {" — Wish I could come, but I'm out of town this…"}
                 </React.Fragment>
