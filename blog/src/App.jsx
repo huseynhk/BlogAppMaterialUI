@@ -1,12 +1,12 @@
-import NavBar from "./components/NavBar";
 import Home from "./components/Home";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
     <>
-      <NavBar />
       <Home />
+      <ToastContainer />
     </>
   );
 };

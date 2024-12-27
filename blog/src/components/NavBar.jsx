@@ -42,24 +42,31 @@ const UserBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const NavBar = () => {
+const NavBar = ({ searchQuery, setSearchQuery, items }) => {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
+  };
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
   };
 
   return (
     <AppBar position="sticky">
       <StyledToolbar>
-        <Typography variant="h5" sx={{ display: { xs: "none", sm: "block" } }}>
-          sarkhanrahimlidev_Blog
+        <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}>
+          sarkhanrahimlidev
         </Typography>
         <Pets sx={{ display: { xs: "block", sm: "none" } }} />
         <Search>
-          <InputBase placeholder="Search..." />
+          <InputBase
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => handleSearchChange(e)}
+          />
         </Search>
         <Icons>
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={items.length} color="error">
             <Mail />
           </Badge>
 

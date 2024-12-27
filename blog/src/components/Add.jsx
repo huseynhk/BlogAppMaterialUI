@@ -20,6 +20,16 @@ import {
   VideoCameraBack,
 } from "@mui/icons-material";
 import { Box } from "@mui/system";
+import { AddItem } from "../api";
+import moment from "moment";
+import CircularProgress from "@mui/material/CircularProgress";
+import { toast } from "react-toastify";
+
+const initialState = {
+  fullName: "",
+  img: "",
+  desc: "",
+};
 
 const SytledModal = styled(Modal)({
   display: "flex",
@@ -27,20 +37,44 @@ const SytledModal = styled(Modal)({
   justifyContent: "center",
 });
 
-const UserBox = styled(Box)({
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
-  marginBottom: "24px",
-});
-
 const CustomFab = styled(Fab)(() => ({
-  width: 75,
-  height: 75,
+  width: 70,
+  height: 70,
 }));
 
-const Add = () => {
+const Add = ({fetchItems}) => {
   const [open, setOpen] = useState(false);
+  const [newItem, setNewItem] = useState(initialState);
+  const [loading, setLoading] = useState(false);
+
+  const handleAddItem = async () => {
+    setLoading(true);
+    const dataToSubmit = {
+      ...newItem,
+      date: moment().valueOf(),
+    };
+    await AddItem(dataToSubmit);
+    fetchItems();
+    setNewItem(initialState);
+    setOpen(false);
+    toast.success("Post added successfully!", {
+      autoClose: 1500,
+    });
+    setLoading(false);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setNewItem({
+      ...newItem,
+      [name]: value,
+    });
+  };
+
+  const isFormValid = () => {
+    return Object.values(newItem).every((value) => value !== "");
+  };
+
   return (
     <>
       <Tooltip
@@ -55,8 +89,8 @@ const Add = () => {
         <CustomFab color="primary" aria-label="add">
           <AddIcon
             sx={{
-              width: 45,
-              height: 45,
+              width: 40,
+              height: 40,
             }}
           />
         </CustomFab>
@@ -69,7 +103,7 @@ const Add = () => {
       >
         <Box
           width={400}
-          height={275}
+          height={350}
           bgcolor={"background.default"}
           color={"text.primary"}
           p={3}
@@ -78,23 +112,36 @@ const Add = () => {
           <Typography variant="h6" color="gray" textAlign="center">
             Create post
           </Typography>
-          <UserBox>
-            <Avatar
-              src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-              sx={{ width: 30, height: 30 }}
-            />
-            <Typography fontWeight={500} variant="span">
-              John Doe
-            </Typography>
-          </UserBox>
           <TextField
-            sx={{ width: "100%" }}
+            sx={{ width: "100%", marginBottom: 2, marginTop:3 }}
+            type="text"
+            variant="standard"
+            placeholder="FullName"
+            name="fullName"
+            value={newItem.fullName}
+            onChange={handleInputChange}
+          />
+          <TextField
+            sx={{ width: "100%", marginBottom: 2 }}
+            type="text"
+            variant="standard"
+            placeholder="Photo"
+            name="img"
+            value={newItem.img}
+            onChange={handleInputChange}
+          />
+          <TextField
+            sx={{ width: "100%", marginBottom: 2 }}
             id="standard-multiline-static"
             multiline
             rows={3}
             placeholder="What's on your mind?"
             variant="standard"
+            name="desc"
+            value={newItem.desc}
+            onChange={handleInputChange}
           />
+
           <Stack direction="row" gap={1} mt={2} mb={3}>
             <EmojiEmotions color="primary" />
             <Image color="secondary" />
@@ -106,7 +153,9 @@ const Add = () => {
             variant="contained"
             aria-label="outlined primary button group"
           >
-            <Button>Post</Button>
+            <Button onClick={handleAddItem} disabled={!isFormValid()}>
+              {loading ? <CircularProgress size={24} /> : "Post"}
+            </Button>
             <Button sx={{ width: "100px" }}>
               <DateRange />
             </Button>

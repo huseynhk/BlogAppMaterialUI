@@ -4,14 +4,14 @@ export const Api = axios.create({
   baseURL: "https://blog-api-t6u0.onrender.com/posts",
 });
 
-export const GetUsers = async () => {
+export const GetItems = async () => {
   try {
     const response = await Api.get("/");
     if (response.status !== 200) {
       throw new Error("Error");
     } else {
       // return response.data;
-      const filteredata = response.data.filter((user) => user.id > 100);
+      const filteredata = response.data.filter((item) => item.id > 100);
       return filteredata;
     }
   } catch (error) {
@@ -19,23 +19,11 @@ export const GetUsers = async () => {
     throw error;
   }
 };
-export const GetSingleUser = async (userId) => {
-  try {
-    const response = await Api.get(`/${userId}`);
-    if (response.status !== 200) {
-      throw new Error("Error");
-    } else {
-      return response.data;
-    }
-  } catch (error) {
-    console.log(error.message);
-    throw error;
-  }
-};
 
-export const AddUsers = async (newUser) => {
+
+export const AddItem = async (newItem) => {
   try {
-    const response = await Api.post("/", newUser);
+    const response = await Api.post("/", newItem);
     if (response.status !== 201) {
       throw new Error("Error");
     } else {
@@ -47,9 +35,9 @@ export const AddUsers = async (newUser) => {
   }
 };
 
-export const DeleteUser = async (userId) => {
+export const DeleteItem = async (itemId) => {
   try {
-    const response = await Api.delete(`/${userId}`);
+    const response = await Api.delete(`/${itemId}`);
     if (response.status !== 200) {
       throw new Error("Error");
     } else {

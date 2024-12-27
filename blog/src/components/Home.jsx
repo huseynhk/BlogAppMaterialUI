@@ -10,10 +10,13 @@ import {
   Skeleton,
 } from "@mui/material";
 import Add from "./Add";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { GetItems } from "../api";
+import NavBar from "./NavBar";
 
 const ParentDiv = styled("div")(({ theme }) => ({
   width: "55%",
+  height: "100%",
   borderRadius: theme.shape.borderRadius,
   display: "flex",
   flexDirection: "column",
@@ -24,6 +27,22 @@ const ParentDiv = styled("div")(({ theme }) => ({
 }));
 const Home = () => {
   const [mode, setMode] = useState("light");
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const fetchItems = async () => {
+    const response = await GetItems();
+    setItems(response);
+  };
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const filteredItems = items.filter((item) =>
+    item.fullName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const darkTheme = createTheme({
     palette: {
@@ -31,14 +50,14 @@ const Home = () => {
     },
   });
 
-  const [loading, setLoading] = useState(true);
-
   setTimeout(() => {
     setLoading(false);
   }, [3000]);
 
   return (
     <>
+      <NavBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} items={items} />
+
       <ThemeProvider theme={darkTheme}>
         <Box bgcolor={"background.default"} color={"text.primary"}>
           <Stack
@@ -50,23 +69,20 @@ const Home = () => {
 
             <ParentDiv>
               {loading ? (
-                <Stack spacing={3}>
-                  <Skeleton variant="text" height={100} />
-                  <Skeleton variant="text" height={20} />
-                  <Skeleton variant="text" height={20} />
-                  <Skeleton variant="rectangular" height={200} />
+                <Stack spacing={3} sx={{ margin: 5 }}>
+                  <Skeleton variant="rectangular" height={400} sx={{ borderRadius:"8px" }}/>
                 </Stack>
               ) : (
                 <>
-                  <Main />
-             
+                  <Main items={filteredItems} fetchItems={fetchItems} />
                 </>
               )}
             </ParentDiv>
 
             <RightBar />
           </Stack>
-          <Add />
+
+          <Add fetchItems={fetchItems} />
         </Box>
       </ThemeProvider>
     </>
